@@ -37,6 +37,14 @@ public class VeiculoService {
         return toResponseDTO(entity);
     }
 
+    public List<VeiculoResponseDTO> buscarPorTipo(String tipo) {
+
+        return veiculoRepository.findByTipoContainingIgnoreCase(tipo)
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
+    }
+
     private Veiculo toEntity(VeiculoRequestDTO dto) {
 
         return new Veiculo(

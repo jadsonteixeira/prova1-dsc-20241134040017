@@ -40,4 +40,10 @@ public class VeiculoController {
 
         return ResponseEntity.ok(veiculoService.buscarPorId(id));
     }
+
+    @GetMapping("/por-tipo")
+    public ResponseEntity<List<VeiculoResponseDTO>> listarPorTipo(@RequestParam String tipo) {
+
+        return ResponseEntity.ok(veiculoService.buscarPorTipo(tipo));
+    }
 }

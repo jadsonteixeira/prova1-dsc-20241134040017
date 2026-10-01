@@ -13,6 +13,11 @@ public class VeiculoService {
 
     private final VeiculoRepository veiculoRepository;
 
+    public VeiculoResponseDTO adicionar(VeiculoRequestDTO dto) {
+
+        return toResponseDTO(veiculoRepository.save(toEntity(dto)));
+    }
+
     private Veiculo toEntity(VeiculoRequestDTO dto) {
 
         return new Veiculo(

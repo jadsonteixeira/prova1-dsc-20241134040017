@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler
+    @ExceptionHandler(PlacaDuplicadaException.class)
     public ProblemDetail handlePlacaDuplicadaException(PlacaDuplicadaException ex) {
 
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.CONFLICT);

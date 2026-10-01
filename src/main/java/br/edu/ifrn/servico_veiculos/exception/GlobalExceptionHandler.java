@@ -35,6 +35,19 @@ public class GlobalExceptionHandler {
         return erros;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler
+    public ProblemDetail handleVeiculoNaoEncontradoException(VeiculoNaoEncontradoException ex) {
+
+        ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+
+        pd.setTitle("Veículo não encontrado");
+
+        pd.setDetail(ex.getMessage());
+
+        return pd;
+    }
+
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler
     public ProblemDetail handlePlacaDuplicadaException(PlacaDuplicadaException ex) {

@@ -34,4 +34,10 @@ public class VeiculoController {
 
         return ResponseEntity.ok(veiculoService.listar());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VeiculoResponseDTO> buscarPorId(@PathVariable Long id) {
+
+        return ResponseEntity.ok(veiculoService.buscarPorId(id));
+    }
 }

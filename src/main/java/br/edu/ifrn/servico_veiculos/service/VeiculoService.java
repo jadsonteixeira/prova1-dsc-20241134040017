@@ -2,6 +2,7 @@ package br.edu.ifrn.servico_veiculos.service;
 
 import br.edu.ifrn.servico_veiculos.dto.request.VeiculoRequestDTO;
 import br.edu.ifrn.servico_veiculos.dto.response.VeiculoResponseDTO;
+import br.edu.ifrn.servico_veiculos.exception.VeiculoNaoEncontradoException;
 import br.edu.ifrn.servico_veiculos.model.Veiculo;
 import br.edu.ifrn.servico_veiculos.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,14 @@ public class VeiculoService {
                 .stream()
                 .map(this::toResponseDTO)
                 .toList();
+    }
+
+    public VeiculoResponseDTO buscarPorId(Long id) {
+
+        Veiculo entity = veiculoRepository.findById(id)
+                .orElseThrow(() -> new VeiculoNaoEncontradoException("Veiculo não encontrado"));
+
+        return toResponseDTO(entity);
     }
 
     private Veiculo toEntity(VeiculoRequestDTO dto) {

@@ -45,6 +45,22 @@ public class VeiculoService {
                 .toList();
     }
 
+    public VeiculoResponseDTO editar(Long id, VeiculoRequestDTO dto) {
+
+        Veiculo entity = veiculoRepository.findById(id)
+                .orElseThrow(() -> new VeiculoNaoEncontradoException("Veiculo não encontrado"));
+
+        entity.setPlaca(dto.getPlaca());
+        entity.setModelo(dto.getModelo());
+        entity.setAnoFabricacao(dto.getAnoFabricacao());
+        entity.setTipo(dto.getTipo());
+        entity.setNomeProprietario(dto.getNomeProprietario());
+
+        Veiculo editado = veiculoRepository.save(entity);
+
+        return toResponseDTO(editado);
+    }
+
     public void remover(Long id) {
 
         Veiculo entity = veiculoRepository.findById(id)

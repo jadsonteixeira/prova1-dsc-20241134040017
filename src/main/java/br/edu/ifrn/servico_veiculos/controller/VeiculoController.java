@@ -47,6 +47,13 @@ public class VeiculoController {
         return ResponseEntity.ok(veiculoService.buscarPorTipo(tipo));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<VeiculoResponseDTO> editar(@PathVariable Long id,
+                                                     @Valid @RequestBody VeiculoRequestDTO dto) {
+
+        return ResponseEntity.ok(veiculoService.editar(id, dto));
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
 

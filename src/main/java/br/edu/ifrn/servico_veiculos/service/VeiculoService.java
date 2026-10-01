@@ -7,6 +7,8 @@ import br.edu.ifrn.servico_veiculos.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class VeiculoService {
@@ -16,6 +18,14 @@ public class VeiculoService {
     public VeiculoResponseDTO adicionar(VeiculoRequestDTO dto) {
 
         return toResponseDTO(veiculoRepository.save(toEntity(dto)));
+    }
+
+    public List<VeiculoResponseDTO> listar() {
+
+        return veiculoRepository.findAll()
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
     }
 
     private Veiculo toEntity(VeiculoRequestDTO dto) {

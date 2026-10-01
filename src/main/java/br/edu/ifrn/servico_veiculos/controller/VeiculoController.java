@@ -46,4 +46,12 @@ public class VeiculoController {
 
         return ResponseEntity.ok(veiculoService.buscarPorTipo(tipo));
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+
+        veiculoService.remover(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }

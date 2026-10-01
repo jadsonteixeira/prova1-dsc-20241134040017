@@ -45,6 +45,14 @@ public class VeiculoService {
                 .toList();
     }
 
+    public void remover(Long id) {
+
+        Veiculo entity = veiculoRepository.findById(id)
+                .orElseThrow(() -> new VeiculoNaoEncontradoException("Veiculo não encontrado"));
+
+        veiculoRepository.delete(entity);
+    }
+
     private Veiculo toEntity(VeiculoRequestDTO dto) {
 
         return new Veiculo(
